@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const dd = document.getElementById('dropdownUser1');
+    const dd = document.getElementById('dropdownSearch');
     const searchInput = document.getElementById('search-input');
     const tableWrapper = document.getElementById('table-wrapper');
     const usersCount = document.getElementById('user-count');
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    const dropdownItems = document.getElementById('dropdown-search');
     dropdownItems.forEach(item => {
         item.addEventListener('click', function () {
             searchBy(item.innerText); 

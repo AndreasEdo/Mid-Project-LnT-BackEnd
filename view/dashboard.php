@@ -18,7 +18,27 @@ $userCount = count($users);
 <body>
     
     <div class="container my-5 table-responsive-xl">
-        <h1 id="user-count">Total Users: <?php echo $userCount; ?></h1>
+        <div class="top-wrapper d-flex justify-content-around">
+            <h1 id="user-count">Total Users: <?php echo $userCount; ?></h1>
+            <div class="w-20 border border-2 border-primary d-flex justify-content-center align-items-center text-center">
+                <a href="#" class="d-block link-dark text-decoration-none ">
+                    Search by:
+                </a>
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Name
+                </a>
+                <ul class="dropdown-menu text-small">
+                    <li><a class="dropdown-item" id="dropdown-search" onclick="searchBy('Name');" href="#">Name</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" id="dropdown-search" onclick="searchBy('Email');" href="#">Email</a></li>
+                </ul>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex w-10">
+
+                <input type="search" id="search-input"  class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+            </div>
+        </div>
+
         <table class="table table-dark table-bordered">
         <thead class="thead-dark text-center">
             <tr>
