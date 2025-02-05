@@ -24,14 +24,15 @@ $userCount = count($users);
                 <a href="#" class="d-block link-dark text-decoration-none ">
                     Search by:
                 </a>
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownSearch" data-bs-toggle="dropdown" aria-expanded="false">
                     Name
                 </a>
                 <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" id="dropdown-search" onclick="searchBy('Name');" href="#">Name</a></li>
+                    <li><a class="dropdown-item dropdown-search" href="#">Name</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" id="dropdown-search" onclick="searchBy('Email');" href="#">Email</a></li>
+                    <li><a class="dropdown-item dropdown-search" href="#">Email</a></li>
                 </ul>
+
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex w-10">
 
                 <input type="search" id="search-input"  class="form-control" placeholder="Search..." aria-label="Search">
@@ -65,7 +66,7 @@ $userCount = count($users);
                 <td><?php echo $user['email']?> </td>
                 <td>
                     <a href="" class="btn btn-primary btn-md">View</a>
-                    <a href="" class="btn btn-warning btn-md">Edit</a>
+                    <a href="editUser.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-md">Edit</a>
                     <a href="" class="btn btn-danger btn-md">Delete</a>
                 </td>
             </tr>
@@ -75,7 +76,7 @@ $userCount = count($users);
         </table>
         <a class="btn btn-primary justify-content-center d-flex" href="#" role="button">Add User</a>
     </div>
-    <script>    
+    <script>
         const users = <?php echo json_encode($users); ?>;
     </script>
     <script src="script/search.js"></script>

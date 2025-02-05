@@ -15,14 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    const dropdownItems = document.getElementById('dropdown-search');
+    const dropdownItems = document.querySelectorAll('.dropdown-search');
     dropdownItems.forEach(item => {
         item.addEventListener('click', function () {
-            searchBy(item.innerText); 
+            searchBy(item.innerText);
         });
-        
-
     });
+    
 
 
 

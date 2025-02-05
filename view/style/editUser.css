@@ -1,0 +1,50 @@
+.card-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:auto;
+    background-color: gray;
+}
+
+.photo{
+    width:20%;
+    height: 20%;
+    border-radius:50%;
+    margin:10px;
+}
+
+.personal-data-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    align-items: space-evenly;
+    gap:100px;
+}
+
+.name-wrapper{
+    width:45%;
+}
+
+.login-information-wrapper{
+    width: 45%;
+}
+
+.input-wrapper{
+    margin-bottom:10px;
+}
+
+.all-wrapper{
+    padding: 20px;
+    background-color: white;
+}
+
+.form-input:focus{
+    border:1px solid black;
+}
