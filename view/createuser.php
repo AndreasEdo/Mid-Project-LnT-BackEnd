@@ -67,11 +67,11 @@ if(isset($_POST['addBtn'])){
                         <input type="password" name="pass" class="form-control" placeholder="Enter password">
                     </div>
 
-                    <!-- Date of Birth -->
+                    <!-- Date of Birth
                     <div class="mb-3">
                         <label for="dob" class="form-label">Date of Birth</label>
                         <input type="date" name="dob" class="form-control">
-                    </div>
+                    </div> -->
 
                     <!-- Description -->
                     <div class="mb-3">

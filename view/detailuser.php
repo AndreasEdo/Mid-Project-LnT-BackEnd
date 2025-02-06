@@ -29,7 +29,7 @@ if (!$user) {
 
                 <div class="image-preview-container me-5">
 
-                    <img id="imagePreview" src="" alt="Profile Image" class="img-fluid rounded-circle mb-3"
+                    <img id="imagePreview" src="<?= empty($user['photo']) ? 'https://via.placeholder.com/500' : '../img/' . $user['photo'] ?>" alt="Profile Image" class="img-fluid rounded-circle mb-3"
                     style="width: 500px; height: 500px; object-fit: cover;">
                 </div>
 
