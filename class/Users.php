@@ -9,6 +9,22 @@ class Users extends Dbh{
         return $results;
     }
 
+    protected function setUser($first_name, $last_name, $email, $password, $photo, $bio) {
+        $sql = "INSERT INTO users (first_name, last_name, email, password, photo, bio) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $this->connect()->prepare($sql);
+
+        $stmt->execute([
+            $first_name,
+            $last_name,
+            $email, 
+            $password,
+            $photo, 
+            $bio,
+        ]);
+
+        $this->close();
+    } 
+
     protected function getUser($id){
         $sql = "SELECT * FROM users WHERE id = ?";
         $stmt = $this->connect()->prepare($sql); 
