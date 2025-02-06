@@ -43,5 +43,14 @@ class Users extends Dbh{
 
         $this->close();
     } 
+
+    
+    protected function delete($userId) {
+        $sql = "DELETE FROM users WHERE id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$userId]);
+
+        $this->close();
+    }
 }
 ?>

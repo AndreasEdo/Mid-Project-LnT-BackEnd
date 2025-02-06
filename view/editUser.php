@@ -43,13 +43,13 @@ if(isset($_POST['updateBtn'])){
                             <div class="name-wrapper">
                                 <div class="input-wrapper">
                                     <label class="form-label">First Name</label>
-                                    <input type="text" class="form-control" name="firstName" placeholder="Enter first name" value="<?= $user['first_name'] ?>" >
+                                    <input type="text" required class="form-control" name="firstName" placeholder="Enter first name" value="<?= $user['first_name'] ?>" >
                                 </div>
 
 
                                 <div class="input-wrapper">
                                     <label for="last_name" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="last_name" name="lastName" placeholder="Enter last name" value="<?= $user['last_name'] ?>">
+                                    <input type="text" required class="form-control" id="last_name" name="lastName" placeholder="Enter last name" value="<?= $user['last_name'] ?>">
                                 </div>
 
                             </div>
@@ -58,7 +58,7 @@ if(isset($_POST['updateBtn'])){
                             <div class="login-information-wrapper">
                                 <div class="input-wrapper">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="<?= $user['email'] ?>">
+                                    <input type="email" required class="form-control" id="email" name="email" placeholder="Enter email" value="<?= $user['email'] ?>">
                                 </div>
 
 
@@ -78,7 +78,7 @@ if(isset($_POST['updateBtn'])){
 
                         <div class="mb-3">
                             <label for="bio" class="form-label">Bio</label>
-                            <textarea class="form-control" id="bio" name="bio" rows="3" placeholder="Tell about yourself"><?= $user['bio'] ?></textarea>
+                            <textarea required class="form-control" id="bio" name="bio" rows="3" placeholder="Tell about yourself"><?= $user['bio'] ?></textarea>
                         </div>
 
 
@@ -92,6 +92,7 @@ if(isset($_POST['updateBtn'])){
         </div>
     </div>
     <script src="script/imageUpload.js"></script>
+    <script src="script/emailValidation.js"></script>
 </body>
 </html>
 

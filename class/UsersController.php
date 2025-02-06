@@ -41,6 +41,8 @@ class UsersController extends Users{
         return $results;
     }
 
+    
+
     public function updateUser($old_data, $data, $img) {
         $this->user($data); 
     
@@ -136,6 +138,16 @@ class UsersController extends Users{
         }
 
         return $result;
+    }
+
+    public function deleteUser($data) {
+        $photoPath = realpath('../img/' . $data['photo']);
+
+        if(file_exists($photoPath)){
+            unlink($photoPath);
+        }
+        
+        $this->delete($data['id']);
     }
 
 

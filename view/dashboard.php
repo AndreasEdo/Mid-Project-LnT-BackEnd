@@ -5,6 +5,11 @@ require '../class/UsersController.php';
 $uc = new UsersController();
 $users = $uc->showUsers();
 $userCount = count($users);
+
+if(isset($_POST['deleteBtn'])){
+    $uc->deleteUser($_POST);
+    header("Refresh:0");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +17,7 @@ $userCount = count($users);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="style/popUpWarning.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
@@ -34,8 +40,7 @@ $userCount = count($users);
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex w-10">
-
-                <input type="search" id="search-input"  class="form-control" placeholder="Search..." aria-label="Search">
+                    <input type="search" id="search-input"  class="form-control" placeholder="Search..." aria-label="Search">
                 </form>
             </div>
         </div>
@@ -67,11 +72,24 @@ $userCount = count($users);
                 <td>
                     <a href="" class="btn btn-primary btn-md">View</a>
                     <a href="editUser.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-md">Edit</a>
-                    <a href="" class="btn btn-danger btn-md">Delete</a>
+                    <button class="btn btn-danger btn-md" onclick="openModal('warningRemove<?= $user['id'] ?>')">Remove</button>
                 </td>
             </tr>
+            <div class="warning"  id="warningRemove<?= $user['id'] ?>" >
+                <div class="warning-wrapper" style="text-align: left">
+                    <form method="POST">
+                        <input type="hidden" name="id" value="<?= $user["id"] ?>">
+                        <input type="hidden" name="photo" value="<?= $user["photo"] ?>">
+                        <img src="assets/warning-icon.png" class="warning-icon">
+                        <h5 class="h5-warning">Are you sure you want to delete</h5><h5 class="warning-name"><?php echo $user['first_name'].' '. $user['last_name']?></h5>
+                        <div class="button-wrapper">
+                            <button type="submit" class="btn btn-danger" name="deleteBtn">Yes</button>
+                            <button type="button" class="btn btn-secondary" onclick="closeModal('warningRemove<?= $user['id'] ?>')">No</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <?php endforeach; ?>
-
         </tbody>
         </table>
         <a class="btn btn-primary justify-content-center d-flex" href="#" role="button">Add User</a>
@@ -80,6 +98,7 @@ $userCount = count($users);
         const users = <?php echo json_encode($users); ?>;
     </script>
     <script src="script/search.js"></script>
+    <script src="script/delete.js"></script>
 </body>
 </html>
 <?php include 'footer.php' ?>

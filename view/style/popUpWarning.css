@@ -1,0 +1,59 @@
+.warning{
+    width: 100%;
+    height:100vh;
+    position:absolute;
+    background-color: rgba(105,105,105, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    z-index: -1;
+    opacity: 0;
+}
+
+.warning-wrapper{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+        
+    color:black;
+    background-color:blueviolet;
+    flex-direction: column;
+    border-radius:20px ;
+    width: 400px;
+    height: 250px;
+}
+
+.warning-icon{
+    width:100px;
+    height:100px;
+    margin:10px;
+}
+
+.h5-warning{
+    color:white;
+    font-size:20px;
+    text-align: center;
+}
+
+.warning-name{
+    color:red;
+}
+
+.button-wrapper{
+    display: flex;
+    gap:50px;
+    margin:10px;
+}
+
+.button-wrapper >button{
+    width:150px;
+}
+
+.open-modal{
+    z-index:999;
+    opacity:1;
+}
