@@ -70,7 +70,7 @@ if(isset($_POST['deleteBtn'])){
                 <td><?php echo $user['first_name'].' '. $user['last_name']?> </td>
                 <td><?php echo $user['email']?> </td>
                 <td>
-                    <a href="" class="btn btn-primary btn-md">View</a>
+                    <a href="detailuser.php" class="btn btn-primary btn-md">View</a>
                     <a href="editUser.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-md">Edit</a>
                     <button class="btn btn-danger btn-md" onclick="openModal('warningRemove<?= $user['id'] ?>')">Remove</button>
                 </td>
