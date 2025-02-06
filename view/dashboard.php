@@ -66,7 +66,7 @@ $userCount = count($users);
                 <td><?php echo $user['email']?> </td>
                 <td>
                     <a href="" class="btn btn-primary btn-md">View</a>
-                    <a href="editUser.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-md">Edit</a>
+                    <a href="editUser.php?id=<?= $user['num_id'] ?>" class="btn btn-warning btn-md">Edit</a>
                     <a href="" class="btn btn-danger btn-md">Delete</a>
                 </td>
             </tr>
