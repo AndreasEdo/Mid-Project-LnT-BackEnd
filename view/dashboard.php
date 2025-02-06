@@ -92,7 +92,8 @@ if(isset($_POST['deleteBtn'])){
             <?php endforeach; ?>
         </tbody>
         </table>
-        <a class="btn btn-primary justify-content-center d-flex" href="#" role="button">Add User</a>
+        <a class="btn btn-primary justify-content-center d-flex" href="createuser.php" role="button">Add User</a>
+        <!-- <a href="createuser.php" class="btn btn-primary justify-content-center d-flex" role="button">Add User</a>        <button class="btn btn-primary justify-content-center d-flex" onclick="window.location.href='createuser.php'">Add User</button> -->
     </div>
     <script>
         const users = <?php echo json_encode($users); ?>;
