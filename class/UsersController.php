@@ -32,6 +32,12 @@ class UsersController extends Users{
 
     public function getOneUser($id) {
         $results = $this->getUser($id);
+    
+        
+        if ($results === false) {
+            die('User not found');
+        }
+    
         return $results;
     }
 
