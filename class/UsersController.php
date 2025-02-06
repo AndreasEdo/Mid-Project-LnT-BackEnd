@@ -43,6 +43,26 @@ class UsersController extends Users{
 
     
 
+    public function createUser($data, $img) {
+        $this->user($data);
+        var_dump($img);
+        $result = $this->validateInput();
+
+        if($result === true){
+            move_uploaded_file($img['tmp_name'], '../img/' . $img['name']);
+            $this->photo = $img['name'];
+
+            $this->setUser(
+                $this->first_name, 
+                $this->last_name,
+                $this->email, 
+                password_hash($this->password, PASSWORD_DEFAULT), 
+                $this->photo, 
+                $this->bio);
+        }
+
+    }
+
     public function updateUser($old_data, $data, $img) {
         $this->user($data); 
     
@@ -119,6 +139,7 @@ class UsersController extends Users{
             empty($this->first_name) || 
             empty($this->last_name)  || 
             empty($this->email) || 
+            empty($this->password) ||
             empty($this->bio)
         ) {
             return false; 
