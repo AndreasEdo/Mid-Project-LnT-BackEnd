@@ -4,7 +4,7 @@ require '../class/UsersController.php';
 
 $uc = new UsersController();
 if(isset($_POST['addBtn'])){
-    if(empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['email']) || empty($_POST['pass']) || empty($_FILES['photo']['name'])){
+    if(empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['email']) || empty($_POST['password']) || empty($_FILES['photo']['name'])){
         echo "<script>alert('Please fill in all fields.');</script>";
     } else {
         $uc->createUser($_POST, $_FILES['photo']);
@@ -66,7 +66,7 @@ if(isset($_POST['addBtn'])){
                     <!-- Password -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" name="pass" class="form-control" placeholder="Enter password">
+                        <input type="password" name="password" class="form-control" placeholder="Enter password">
                     </div>
 
                     <!-- Date of Birth
@@ -78,13 +78,13 @@ if(isset($_POST['addBtn'])){
                     <!-- Description -->
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" name="description" rows="3" placeholder="Enter a brief description"></textarea>
+                        <textarea class="form-control" name="bio" rows="3" placeholder="Enter a brief description"></textarea>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="text-center">
                         <button type="submit" name="addBtn" class="btn btn-success w-100">Add User</button>
-                        <a type="button" class="btn btn-secondary w-100 mt-3" href="index.php">Close</a>
+                        <a type="button" class="btn btn-secondary w-100 mt-3" href="dashboard.php">Close</a>
                     </div>
                 </form>
             </div>

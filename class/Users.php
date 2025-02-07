@@ -9,11 +9,28 @@ class Users extends Dbh{
         return $results;
     }
 
+    protected function getNextUserId() {
+        $sql = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
+        $stmt = $this->connect()->query($sql);
+        $lastId = $stmt->fetchColumn();
+
+        if ($lastId) {
+            $number = (int)substr($lastId, 1);
+            $nextId = 'U' . str_pad($number + 1, 3, '0', STR_PAD_LEFT); 
+        } else {
+            $nextId = 'U001';
+        }
+
+        return $nextId;
+    }
+
     protected function setUser($first_name, $last_name, $email, $password, $photo, $bio) {
-        $sql = "INSERT INTO users (first_name, last_name, email, password, photo, bio) VALUES (?, ?, ?, ?, ?, ?)";
+        $userId = $this->getNextUserId();
+        $sql = "INSERT INTO users (id, first_name, last_name, email, password, photo, bio) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->connect()->prepare($sql);
 
         $stmt->execute([
+            $userId,
             $first_name,
             $last_name,
             $email, 
@@ -32,7 +49,6 @@ class Users extends Dbh{
         $results = $stmt->fetch(); 
         $this->close(); 
         return $results; 
-        // return $stmt->fetch(); // Return the user data
     }
 
     protected function getUserEmail($email){
