@@ -138,8 +138,7 @@ class UsersController extends Users{
         if (
             empty($this->first_name) || 
             empty($this->last_name)  || 
-            empty($this->email) || 
-            empty($this->password)
+            empty($this->email) 
         ) {
             return false; 
         }
