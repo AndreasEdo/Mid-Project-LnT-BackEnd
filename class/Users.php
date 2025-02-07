@@ -32,6 +32,7 @@ class Users extends Dbh{
         $results = $stmt->fetch(); 
         $this->close(); 
         return $results; 
+        // return $stmt->fetch(); // Return the user data
     }
 
     protected function getUserEmail($email){

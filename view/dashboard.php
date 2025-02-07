@@ -70,7 +70,7 @@ if(isset($_POST['deleteBtn'])){
                 <td><?php echo $user['first_name'].' '. $user['last_name']?> </td>
                 <td><?php echo $user['email']?> </td>
                 <td>
-                    <a href="detailuser.php" class="btn btn-primary btn-md">View</a>
+                    <a href="detailuser.php?id=<?= urlencode($user['id']) ?>" class="btn btn-primary btn-md">View</a>]
                     <a href="editUser.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-md">Edit</a>
                     <button class="btn btn-danger btn-md" onclick="openModal('warningRemove<?= $user['id'] ?>')">Remove</button>
                 </td>
@@ -93,7 +93,6 @@ if(isset($_POST['deleteBtn'])){
         </tbody>
         </table>
         <a class="btn btn-primary justify-content-center d-flex" href="createuser.php" role="button">Add User</a>
-        <!-- <a href="createuser.php" class="btn btn-primary justify-content-center d-flex" role="button">Add User</a>        <button class="btn btn-primary justify-content-center d-flex" onclick="window.location.href='createuser.php'">Add User</button> -->
     </div>
     <script>
         const users = <?php echo json_encode($users); ?>;

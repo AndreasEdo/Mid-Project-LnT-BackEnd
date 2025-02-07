@@ -3,6 +3,11 @@ include 'header.php';
 include '../class/UsersController.php';
 
 $uc = new UsersController();
+
+if (!isset($_GET['id'])) {
+    die('User  ID not provided');
+}
+
 $user = $uc->getOneUser($_GET['id']);
 
 if (!$user) {
@@ -30,17 +35,16 @@ if (!$user) {
                 <div class="image-preview-container me-5">
 
                     <img id="imagePreview" src="<?= empty($user['photo']) ? 'https://via.placeholder.com/500' : '../img/' . $user['photo'] ?>" alt="Profile Image" class="img-fluid rounded-circle mb-3"
-                    style="width: 500px; height: 500px; object-fit: cover;">
+                    style="width: 325px; height: 250px; object-fit: cover;">
                 </div>
 
-                <div class="w-100">
-                    <!-- <p><strong>ID:<?=$user['id']?></strong></p> -->
-                    <p><strong>First Name:<?=$user['first_name']?></strong></p>
-                    <p><strong>Last Name:<?=$user['last_name']?></strong></p>
-                    <p><strong>Email:<?=$user['email']?></strong></p>
-                    <p><strong>Password:<?=$user['password']?></strong></p>
-                    <!-- <p><strong>Date of Birth:<?=$user['dob']?></strong></p> -->
-                    <p><strong>Description:<?=$user['bio']?></strong></p>
+                <div class="w-100">                    
+                    <p><strong>ID: <?= htmlspecialchars($user['id'] ?? 'N/A') ?></strong></p>
+                    <p><strong>First Name: <?= htmlspecialchars($user['first_name'] ?? 'N/A') ?></strong></p>
+                    <p><strong>Last Name: <?= htmlspecialchars($user['last_name'] ?? 'N/A') ?></strong></p>
+                    <p><strong>Email: <?= htmlspecialchars($user['email'] ?? 'N/A') ?></strong></p>
+                    <p><strong>Password: <?= htmlspecialchars($user['password'] ?? 'N/A') ?></strong></p>
+                    <p><strong>Description: <?= htmlspecialchars($user['bio'] ?? 'N/A') ?></strong></p>
 
 
                     <div class="text-center">
