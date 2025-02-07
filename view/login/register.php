@@ -97,7 +97,7 @@ if (isset($_SESSION['errors'])) {
         </div>
         <div class="links">
             <p>Already Have Account ?</p>
-            <a href="index.php">Sign In</a>
+            <a href="login.php">Sign In</a>
         </div>
     </div>
     <script src="script.js"></script>
