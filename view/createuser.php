@@ -4,11 +4,13 @@ require '../class/UsersController.php';
 
 $uc = new UsersController();
 if(isset($_POST['addBtn'])){
-    $uc->createUser($_POST, $_FILES['photo']);
-    header("Location: dashboard.php");
-    exit();
-} else {
-    echo "<script>alert('Please fill in all fields.');</script>";
+    if(empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['email']) || empty($_POST['pass']) || empty($_FILES['photo']['name'])){
+        echo "<script>alert('Please fill in all fields.');</script>";
+    } else {
+        $uc->createUser($_POST, $_FILES['photo']);
+        header("Location: dashboard.php");
+        exit();
+    }
 }
 
 ?>
@@ -31,7 +33,7 @@ if(isset($_POST['addBtn'])){
         <div class="card-body bg-dark text-white d-flex align-items-center">
             <!-- Image Preview Section -->
             <div class="image-preview-container me-5">
-                <img id="imagePreview" src="" alt="Profile Image" class="img-fluid rounded-circle mb-6" style="width: 300px; height: 300px; object-fit: cover;">
+                <img id="imagePreview" src="" alt="Profile Image" class="img-fluid rounded-circle mb-6" style="width: 325px; height: 250px; object-fit: cover;">
             </div>
             
             <!-- Form Section -->
