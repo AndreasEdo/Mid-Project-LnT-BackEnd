@@ -56,7 +56,7 @@ class UsersController extends Users{
                 $this->first_name, 
                 $this->last_name,
                 $this->email, 
-                password_hash($this->password, PASSWORD_DEFAULT), 
+                md5($this->password),
                 $this->photo, 
                 $this->bio);
         }
