@@ -29,7 +29,7 @@ if (isset($_SESSION['errors'])) {
       unset($errors['login']);
     }
     ?>
-    <form method="POST" action="/DBExport/user-account.php">
+    <form method="POST" action="user-account.php">
       <div class="input-group">
         <i class="fas fa-envelope"></i>
         <input type="email" name="email" id="email" placeholder="Email" required>
