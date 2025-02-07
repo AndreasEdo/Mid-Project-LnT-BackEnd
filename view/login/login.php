@@ -14,7 +14,7 @@ if (isset($_SESSION['errors'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register & Login</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -29,7 +29,7 @@ if (isset($_SESSION['errors'])) {
       unset($errors['login']);
     }
     ?>
-    <form method="POST" action="user-account.php">
+    <form method="POST" action="/DBExport/user-account.php">
       <div class="input-group">
         <i class="fas fa-envelope"></i>
         <input type="email" name="email" id="email" placeholder="Email" required>
@@ -70,7 +70,7 @@ if (isset($_SESSION['errors'])) {
       <a href="register.php">Sign Up</a>
     </div>
   </div>
-  <script src="script.js"></script>
+  <script src="/css/script.js"></script>
 </body>
 
 </html>
