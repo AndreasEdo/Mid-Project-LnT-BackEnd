@@ -59,19 +59,19 @@ if (!$user) {
     <?php include 'header.php'; ?>
 
     <div class="profile-container text-center">
-        <!-- Foto Profil -->
+
         <img src="<?= empty($user['photo']) ? 'https://via.placeholder.com/150' : '../img/' . $user['photo'] ?>" alt="Profile Photo" class="profile-image">
 
-        <!-- Nama -->
+
         <h2><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></h2>
 
-        <!-- Bio -->
+
         <div class="profile-details">
             <p><strong>Bio:</strong> <?= htmlspecialchars($user['bio']) ?></p>
             <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
         </div>
 
-        <!-- Tombol untuk menuju ke User Detail Page dan kembali ke Dashboard -->
+
         <div class="btn-container">
             <a href="detailuser.php?id=<?= urlencode($user['id']) ?>" class="btn btn-primary">View Details</a>
             <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>

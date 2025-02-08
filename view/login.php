@@ -3,17 +3,17 @@ require '../class/user-account.php';
 session_start();
 
 $errors = $_SESSION['errors'] ?? [];
-unset($_SESSION['errors']); // Clear errors after displaying
+unset($_SESSION['errors']);
 
 $lc = new LoginController();
 
-// Check if form is submitted
+
 if (isset($_POST['signin'])) {
     $rememberMe = isset($_POST['rememberMe']) ? true : false;
     $lc->login($_POST, $rememberMe);
 }
 
-// Check if user is remembered via cookie
+
 if (isset($_COOKIE['remember_user'])) {
     $userData = json_decode($_COOKIE['remember_user'], true);
     $lc->login($userData, true);

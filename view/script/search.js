@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function populateTable(filteredUsers) {
         let tableHTML = '';
     
-        // ✅ Filter out users whose ID starts with 'A' or 'U'
+
         const visibleUsers = filteredUsers.filter(user => {
             let userId = String(user.id); // Ensure it's a string
             return (userId.startsWith('U'));
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     
         tableWrapper.innerHTML = tableHTML;
-        usersCount.innerHTML = 'Total Users: ' + visibleUsers.length; // ✅ Only count displayed users
+        usersCount.innerHTML = 'Total Users: ' + visibleUsers.length; 
     }
     
     
