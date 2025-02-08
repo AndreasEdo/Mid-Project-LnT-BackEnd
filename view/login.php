@@ -42,16 +42,16 @@ if (isset($_COOKIE['remember_user'])) {
     <form method="POST">
         <div class="input-group">
             <i class="fas fa-envelope"></i>
-            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input class="input-text" type="email" name="email" id="email" placeholder="Email" required>
         </div>
         <div class="input-group password">
             <i class="fas fa-lock"></i>
-            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input class="input-text" type="password" name="password" id="password" placeholder="Password" required>
             <i id="eye" class="fa fa-eye"></i>
         </div>
-        <div class="input-group">
+        <div class="input-group-remember">
             <input type="checkbox" name="rememberMe" id="rememberMe">
-            <label for="rememberMe">Remember Me</label>
+            <label class="input-checkbox" for="rememberMe">Remember Me</label>
         </div>
         <input type="submit" class="btn" value="Sign In" name="signin">
     </form>

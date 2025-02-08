@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header("Location: login.php");
+if($_SESSION['login'] !== "Admin"){
+    header("location: login.php");
     exit();
 }
 

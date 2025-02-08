@@ -27,7 +27,7 @@ form{
     padding:1.3rem;
     margin-bottom:0.4rem;
 }
-input{
+.input-text{
     flex:10;
     color:inherit;
     width:100%;
@@ -37,20 +37,36 @@ input{
     padding:0 0.4em;
     border-left:solid 1px hsla(0, 0%, 0%, 0.4)
 }
-input:focus{
+.input-text:focus{
     border-left:solid 1px hsla(240, 73%, 71%, 1);
 
 }
-.input-group{
-    padding:1% 0;
-    position:relative;
-   background-color:hsla(227, 63%, 18%, 0.07);
-margin:1em auto;
-border-radius:12px;
-display:flex;
-padding:0.7em 0.1em;
+
+.input-checkbox{
 
 }
+
+.input-group{
+    position:relative;
+    background-color:hsla(227, 63%, 18%, 0.07);
+    margin:1em auto;
+    border-radius:12px;
+    display:flex;
+    padding:0.7em 0.1em;
+    
+
+}
+
+.input-group-remember{
+    background-color:hsla(227, 63%, 18%, 0.07);
+    margin:1em auto;
+    border-radius:12px;
+    display:flex;
+    padding:0.7em;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .error{
     position:absolute;
     left:2em;
