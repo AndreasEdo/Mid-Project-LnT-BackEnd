@@ -11,7 +11,8 @@ class LoginController extends Users {
         $this->password = $data['password'] ?? '';
     }
 
-    public function login($data) {
+ /*
+   public function login($data) {
         $this->user($data);
 
         if ($this->validateInput()) {
@@ -21,6 +22,33 @@ class LoginController extends Users {
             exit();
         }
     }
+*/
+
+    public function login($data, $rememberMe = false) {
+        $email = $data['email'];
+        $password = $data['password'];
+
+        // Lakukan validasi login
+        if ($this->validateLogin($email, $password)) {
+            $_SESSION['login'] = true;
+            $_SESSION['email'] = $email;
+
+            if ($rememberMe) {
+                $cookieData = json_encode(['email' => $email, 'password' => $password]);
+                setcookie('remember_user', $cookieData, time() + 7200, "/"); // 2 jam
+            }
+
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            $_SESSION['errors']['login'] = "Invalid email or password.";
+            header("Location: login.php");
+            exit();
+        }
+    }
+
+
+
 
     private function validateInput() {
         if (!$this->isNotEmptyInput()) {
@@ -60,7 +88,7 @@ class LoginController extends Users {
         return filter_var($this->email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
-    public function logout(){
+/*    public function logout(){
         session_start();
         session_unset();
         session_destroy();
@@ -68,5 +96,19 @@ class LoginController extends Users {
         header("location: ../view/login.php");
         exit();
     }
+*/
+    public function logout() {
+        session_destroy();
+
+        // Hapus cookie "remember_user" jika ada
+        if (isset($_COOKIE['remember_user'])) {
+            setcookie('remember_user', '', time() - 3600, "/"); // Hapus cookie
+        }
+
+        // Redirect ke halaman login
+        header("Location: login.php");
+        exit();
+    }
+
 }
 ?>
