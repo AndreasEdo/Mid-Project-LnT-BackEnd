@@ -2,6 +2,12 @@
 include 'header.php';
 include '../class/UsersController.php';
 
+session_start();
+if($_SESSION['login'] !== "Admin"){
+    header("location: login.php");
+    exit();
+}
+
 $uc = new UsersController();
 
 if (!isset($_GET['id'])) {
@@ -43,8 +49,8 @@ if (!$user) {
                     <p><strong>First Name: <?= htmlspecialchars($user['first_name'] ?? 'N/A') ?></strong></p>
                     <p><strong>Last Name: <?= htmlspecialchars($user['last_name'] ?? 'N/A') ?></strong></p>
                     <p><strong>Email: <?= htmlspecialchars($user['email'] ?? 'N/A') ?></strong></p>
-                    <p><strong>Password: <?= htmlspecialchars($user['password'] ?? 'N/A') ?></strong></p>
-                    <p><strong>Description: <?= htmlspecialchars($user['bio'] ?? 'N/A') ?></strong></p>
+                    <p><strong>Password: ********</strong></p>
+                    <p><strong>Bio: <?= htmlspecialchars($user['bio'] ?? 'N/A') ?></strong></p>
 
 
                     <div class="text-center">

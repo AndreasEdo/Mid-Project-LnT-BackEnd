@@ -3,7 +3,7 @@ include 'header.php';
 require '../class/UsersController.php';
 
 session_start();
-if($_SESSION['login'] !== true){
+if($_SESSION['login'] !== "Admin"){
     header("location: login.php");
     exit();
 }
