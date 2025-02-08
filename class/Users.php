@@ -1,5 +1,5 @@
 <?php
-require '../dbh/dbh.php';
+require_once '../dbh/dbh.php';
 
 class Users extends Dbh{
     protected function getAllUsers(){

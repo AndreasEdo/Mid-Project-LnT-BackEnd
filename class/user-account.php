@@ -1,90 +1,72 @@
 <?php
-require_once 'dbConnect.php';
+require_once 'Users.php';
 
-session_start();
+class LoginController extends Users {
 
-$errors = [];
+    private $email;
+    private $password;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $name=$_POST['name'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
-    $created_at = date('Y-m-d H:i:s');
-
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = 'Invalid email format';
-      
-    }
-    if(empty($name)){
-        $errors['name']='Name is required';
-    }
-    if (strlen($password) < 8 ) {
-        $errors['password'] = 'Password must be at least 8 characters long.';
+    private function user($data) {
+        $this->email = $data['email'] ?? '';
+        $this->password = $data['password'] ?? '';
     }
 
-    if ($password !== $confirmPassword) {
-        $errors['confirm_password'] = 'Passwords do not match';
+    public function login($data) {
+        $this->user($data);
+
+        if ($this->validateInput()) {
+            session_start();
+            $_SESSION['login'] = true;
+            header("Location: ../view/dashboard.php");
+            exit();
+        }
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $stmt->execute(['email' => $email]);
-    if ($stmt->fetch()) {
-        $errors['user_exist'] = 'Email is already registered';
+    private function validateInput() {
+        if (!$this->isNotEmptyInput()) {
+            header("Location: ../view/login.php?error=empty");
+            exit();
+        }
+
+        if (!$this->isEmail()) {
+            header("Location: ../view/login.php?error=emailInvalid");
+            exit();
+        }
+
+        $user = $this->getUserEmail($this->email);
+        
+        if (!$user || count($user) < 1) {
+            header("Location: ../view/login.php?error=invalidEmail");
+            exit();
+        }
+
+        $user = $user[0];
+
+        if ($user['password'] !== md5($this->password)) {
+            header("Location: ../view/login.php?error=invalidPassword");
+            exit();
+            
+
+        }
+
+        return true;
     }
 
-    if (!empty($errors)) {
-        $_SESSION['errors'] = $errors;
-        header('Location: register.php');
-        exit();
+    private function isNotEmptyInput() {
+        return !empty($this->email) && !empty($this->password);
     }
 
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    $stmt = $pdo->prepare("INSERT INTO users (email, password,name,created_at) VALUES (:email, :password, :name, :created_at)");
-    $stmt->execute(['email' => $email, 'password' => $hashedPassword, 'name'=>$name,'created_at'=>$created_at]);
-
-    header('Location: index.php');
-    exit();
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password'];
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = 'Invalid email format';
+    private function isEmail() {
+        return filter_var($this->email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
-    if (empty($password)) {
-        $errors['password'] = 'Password cannot be empty';
-    }
+    public function logout(){
+        session_start();
+        session_unset();
+        session_destroy();
 
-    if (!empty($errors)) {
-        $_SESSION['errors'] = $errors;
-        header('Location: index.php');
-        exit();
-    }
-
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $stmt->execute(['email' => $email]);
-    $user = $stmt->fetch();
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user'] = [
-            'id' => $user['id'],
-            'email' => $user['email'],
-            'name'=>$user['name'],
-            'created_at' => $user['created_at']
-        ];
-
-        header('Location: home.php');
-        exit();
-    } else {
-        $errors['login'] = 'Invalid email or password';
-        $_SESSION['errors'] = $errors;
-        header('Location: index.php');
+        header("location: ../view/login.php");
         exit();
     }
 }
+?>

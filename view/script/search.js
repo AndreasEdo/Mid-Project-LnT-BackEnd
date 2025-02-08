@@ -28,7 +28,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function populateTable(filteredUsers) {
         let tableHTML = '';
-        filteredUsers.forEach((user, index) => {
+    
+        // ✅ Filter out users whose ID starts with 'A' or 'U'
+        const visibleUsers = filteredUsers.filter(user => {
+            let userId = String(user.id); // Ensure it's a string
+            return (userId.startsWith('U'));
+        });
+    
+        visibleUsers.forEach((user, index) => {
             tableHTML += `
                 <tr>
                     <th scope="row">${index + 1}</th>
@@ -41,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${user.email}</td>
                     <td>
                         <a href="#" class="btn btn-primary btn-md">View</a>
-                        <!-- Edit link is dynamically added using the user ID -->
                         <a href="editUser.php?id=${user.id}" class="btn btn-warning btn-md">Edit</a>
                         <a href="#" class="btn btn-danger btn-md">Delete</a>
                     </td>
@@ -50,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     
         tableWrapper.innerHTML = tableHTML;
-    
-        usersCount.innerHTML = 'Total Users: ' + filteredUsers.length;
+        usersCount.innerHTML = 'Total Users: ' + visibleUsers.length; // ✅ Only count displayed users
     }
+    
     
 
     searchInput.addEventListener('input', function(event) {

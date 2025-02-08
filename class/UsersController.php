@@ -1,5 +1,5 @@
 <?php
-require 'Users.php';
+require_once 'Users.php';
 
 class UsersController extends Users{
 
@@ -70,11 +70,11 @@ class UsersController extends Users{
         $this->photo = $old_data['photo'];
         
         if (empty($data['password'])) {
-            $this->password = isset($old_data['password']) ? $old_data['password'] : '';  
+            $this->password = $old_data['password'] ?? '';  
         } else {
-            
-            $this->password = password_hash($data['password'], PASSWORD_DEFAULT);
+            $this->password = md5($data['password']);
         }
+        
   
         if (!empty($img['tmp_name'])) {
             $photoPath = realpath('../img/' . $old_data['photo']);

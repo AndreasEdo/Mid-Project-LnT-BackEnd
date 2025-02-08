@@ -1,3 +1,12 @@
+<?php
+require '../class/user-account.php';
+
+$lc = new LoginController();
+if (isset($_POST['logoutBtn'])) {
+    $lc->logout();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +37,7 @@
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li><form method="POST"><button class="dropdown-item" name="logoutBtn" href="#">Sign out</button></form></li>
           </ul>
         </div>
       </div>

@@ -2,6 +2,12 @@
 include 'header.php';
 require '../class/UsersController.php';
 
+session_start();
+if($_SESSION['login'] !== true){
+    header("location: login.php");
+    exit();
+}
+
 $uc = new UsersController();
 $users = $uc->showUsers();
 $userCount = count($users);
@@ -25,7 +31,7 @@ if(isset($_POST['deleteBtn'])){
     
     <div class="container my-5 table-responsive-xl">
         <div class="top-wrapper d-flex justify-content-around">
-            <h1 id="user-count">Total Users: <?php echo $userCount; ?></h1>
+            <h1 id="user-count">Total Users: <?php echo $userCount - 1; ?></h1>
             <div class="w-20 border border-2 border-primary d-flex justify-content-center align-items-center text-center">
                 <a href="#" class="d-block link-dark text-decoration-none ">
                     Search by:
@@ -59,6 +65,9 @@ if(isset($_POST['deleteBtn'])){
             <?php 
             $num = 1;
             foreach($users as $user):
+            if($user['id'][0] === 'A'){
+                continue;
+            }
             ?>
             <tr>
                 <th scope="row"><?php echo $num++?></th>
