@@ -10,7 +10,14 @@ if (isset($_SESSION['errors'])) {
 $lc = new LoginController();
 
 if(isset($_POST['signin'])){
-  $lc->login($_POST);
+  $rememberMe = isset($_POST['rememberMe']) ? true : false;
+  $lc->login($_POST, $rememberMe);
+}
+
+// Check if there's a cookie for remembering the user
+if (isset($_COOKIE['remember_user'])) {
+  $userData = json_decode($_COOKIE['remember_user'], true);
+  $lc->login($userData, true);
 }
 ?>
 
@@ -60,6 +67,10 @@ if(isset($_POST['signin'])){
                 </div>';
         }
         ?>
+      </div>
+      <div class="input-group">
+        <input type="checkbox" name="rememberMe" id="rememberMe">
+        <label for="rememberMe">Remember Me</label>
       </div>
       <input type="submit" class="btn" value="Sign In" name="signin">
     </form>
