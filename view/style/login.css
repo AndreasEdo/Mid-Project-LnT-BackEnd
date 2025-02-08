@@ -198,3 +198,12 @@ text-decoration-color:blue;
     box-shadow:unset;
 }
 }
+
+.input-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #333;
+}
