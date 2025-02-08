@@ -169,6 +169,23 @@ class UsersController extends Users{
         $this->delete($data['id']);
     }
 
+public function getOneUserByEmail($email) {
+    $results = $this->getUserEmail($email);
+    if ($results === false || count($results) < 1) {
+        return false;
+    }
+    return $results[0]; // Kembalikan data pengguna pertama yang ditemukan
+}
+
+// profile page
+public function getUserByEmail($email) {
+    $sql = "SELECT * FROM users WHERE email = ?";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute([$email]);
+    $result = $stmt->fetch();
+    $this->close();
+    return $result;
+}
 
 }
 ?>
